@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine's Day</title>
+<style>
+  body {
+    background-color: #ffe6e6;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px; /* Adjust margin */
+  }
+  .text {
+    font-size: 24px; /* Increased font size */
+    margin-bottom: 0; /* Adjust margin */
+  }
+  .envelope {
+    display: none; /* Initially hidden */
+    width: 300px; /* Adjust envelope size */
+    height: 200px; /* Adjust envelope size */
+    background-color: #fff;
+    border: 3px solid #d9534f;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden; /* Hide overflow content */
+  }
+  .envelope .top-flap,
+  .envelope .bottom-flap {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    background-color: #fff;
+    border-top: 3px solid #d9534f;
+  }
+  .envelope .top-flap {
+    top: -3px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+  .envelope .bottom-flap {
+    bottom: -3px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+  .envelope .emblem {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background-color: #d9534f;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1; /* Ensure emblem appears above flaps */
+  }
+  .envelope:hover .emblem {
+    background-color: #af4448;
+  }
+  .message {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 2px solid #d9534f;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 1; /* Ensure message appears above flaps */
+  }
+  .message img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+  }
+  .question {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .yes-button, .no-button {
+    background-color: pink;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px; /* Adjust margin */
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: bold; /* Added font weight */
+    margin-bottom: 10px; /* Adjust margin */
+  }
+  .button-group {
+    display: flex;
+    justify-content: center;
+  }
+  .no-button {
+    margin-left: 10px; /* Adjust margin between buttons */
+  }
+
+  /* Added styling for the question */
+  .question p {
+    font-size: 24px;
+    margin: 20px;
+    font-weight: bold;
+    color: #d9534f; /* Adjust text color */
+  }
+
+  /* Added styling for the image collage */
+  .collage {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  .collage img {
+    width: 100px; /* Adjust image width */
+    height: 100px; /* Adjust image height */
+    margin: 5px;
+    border-radius: 10px;
+  }
+</style>
+</head>
+<body>
+<div class="container" id="container">
+  <img id="wokeImage" src="woke.jpg" alt="Sleeping in Bed" style="max-width: 600px; max-height: 600px; transform: rotate(-90deg); margin-bottom: -150px;"> <!-- Adjust max-width and max-height -->
+  <div class="text" id="morningText">
+    <p>Ohh, you just woke up? Good morning!</p>
+  </div>
+  <button class="yes-button" onclick="showQuestion()">Yes, jwu baby</button>
+</div>
+
+<div class="envelope" id="envelope" onclick="showMessage()">
+  <div class="top-flap"></div>
+  <div class="bottom-flap"></div>
+  <div class="emblem" onclick="showMessage()"></div>
+  <!-- Image collage inside envelope -->
+
+</div>
+<div class="message" id="message">
+  <h2>Happy Valentine's Day!</h2>
+  <p>char we already date yesterday, goodluck doing your plates.</p>
+  <img src="bb.jpg" alt="Your Girlfriend">
+</div>
+
+<div class="question" id="question">
+  <img id="pogiImage" src="pogi.jpg" alt="Handsome Guy" style="max-width: 600px; max-height: 600px; margin-bottom: 10px;"> <!-- Adjust max-width and max-height -->
+  <p>Hey, pogi, will you be my Valentine's date?</p>
+  <div class="button-group">
+    <button class="yes-button" onclick="showEnvelope()">Yes</button>
+    <button class="no-button" onclick="hideQuestion()">No</button>
+  </div>
+</div>
+
+<div id="blehImage" style="display: none;">
+  <img src="bleh.jpg" alt="Bleh">
+</div>
+<div id="blehText" style="display: none;">
+  <p>Bleh ayoko nga!</p>
+</div>
+
+<script>
+  function showQuestion() {
+    var container = document.getElementById("container");
+    var question = document.getElementById("question");
+    container.style.display = "none";
+    question.style.display = "flex";
+  }
+  
+  function hideQuestion() {
+    var question = document.getElementById("question");
+    var blehImage = document.getElementById("blehImage");
+    var blehText = document.getElementById("blehText");
+    question.style.display = "none"; // Hide the question
+    blehImage.style.display = "block"; // Show the bleh.jpg image
+    blehText.style.display = "block"; // Show the "Bleh ayoko nga!" text
+  }
+  
+  function showEnvelope() {
+    var envelope = document.getElementById("envelope");
+    var question = document.getElementById("question");
+    envelope.style.display = "block";
+    question.style.display = "none"; // Hide the question
+  }
+  
+  function showMessage() {
+    var message = document.getElementById("message");
+    message.style.display = "block";
+  }
+</script>
+
+</body>
+</html>
